@@ -1,34 +1,8 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
 ## Installation
 
 ```bash
+$ npm i -g @nestjs/cli
+$ nest new
 $ npm install
 ```
 
@@ -57,6 +31,60 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+## Swagger UI
+
+[nestjs-swagger](https://docs.nestjs.com/openapi/introduction)
+
+```bash
+$ npm install --save @nestjs/swagger
+```
+
+## Prisma
+
+[nestjs-prisma](https://docs.nestjs.com/recipes/prisma)
+
+```bash
+$ npm install prisma --save-dev
+
+$ npx prisma
+
+$ npx prisma init
+
+# migration
+$ npx prisma migrate dev --name {init} #이름을 정해줌
+
+# client 설치
+$ npm install @prisma/client
+```
+
+`prisma\schema.prisma` 파일 수정
+
+```ts
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+```
+
+```ts
+// .env 파일
+DATABASE_URL = 'mysql://{ID}:{PASSWORD}@{IP_ADDRESS}:{PORT}/{DATABASE_NAME}';
+/* PASSWORD에 특수문자가 있을 경우 아래와 같이 변경해야 함
+```
+
+| 문자 | 인코딩 | 문자 | 인코딩 | 문자 | 인코딩 | 문자 | 인코딩 | 문자 | 인코딩 |
+| ---- | ------ | ---- | ------ | ---- | ------ | ---- | ------ | ---- | ------ |
+| !    | %21    | @    | %40    | #    | %23    | $    | %24    | %    | %25    |
+| ^    | %5E    | &    | %26    | \*   | %2A    | (    | %28    | )    | %29    |
+| +    | %2B    | -    | %2D    | \_   | %5F    | =    | %3D    | [    | %5B    |
+| ]    | %5D    | {    | %7B    | }    | %7D    | \|   | %7C    | \    | %5C    |
+| ;    | %3B    | '    | %27    | "    | %22    | ,    | %2C    | <    | %3C    |
+| >    | %3E    | ?    | %3F    | /    | %2F    | `    | %60    | ~    | %7E    |
 
 ## Support
 
